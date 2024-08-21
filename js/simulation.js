@@ -1,12 +1,17 @@
 class Simulation {
-    constructor(r, c) {
+    constructor(r, c, speed, gbw, gbo, bgc, bc) {
         this.rows = r;
         this.cols = c;
         this.cellSize = 0;
         this.grid = [];
         this.running = false;
         this.mouseClickable = true;
-        this.angle = 0;
+        this.speed = speed;
+
+        this.gridBroderWidth = gbw;
+        this.gridBroderOpacity = gbo;
+        this.BgColor = bgc;
+        this.BorderColor = bc;
 
         this.offsetsDirect = [[0, -1], [1, 0], [0, 1], [-1, 0]];
         this.offsetsDiag = [[1, -1], [1, 1], [-1, 1], [-1, -1]];
@@ -18,29 +23,17 @@ class Simulation {
     }
 
     initGrid() {
-        let r = document.getElementById('rows').value;
-        let c = document.getElementById('cols').value;
-
-        if(r == "" || c == "") return;
-
-        r = parseInt(r);
-        c = parseInt(c);
-
-        if(r === 0 || c === 0) return;
-        this.rows = r;
-        this.cols = c;
-
         this.grid = Array.from({ length: this.rows }, () => Array(this.cols).fill(0)); // Default to empty (0)
         loop();
     }
 
     drawGrid() {
-        background(document.getElementById('bgColor').value);
+        background(this.BgColor);
         this.cellSize = min((width - 20) / this.cols, (height - 20) / this.rows);
         translate((width - this.cols * this.cellSize) / 2, (height - this.rows * this.cellSize) / 2);
 
-        strokeWeight(parseInt(document.getElementById('borderWidth').value));
-        stroke(color(document.getElementById('borderColor').value + hex(floor(255 * parseFloat(document.getElementById('borderOpacity').value)), 2)));
+        strokeWeight(this.gridBroderWidth);
+        stroke(color(this.BorderColor + hex(floor(255 * this.gridBroderOpacity), 2)));
 
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
@@ -58,8 +51,8 @@ class Simulation {
 
     toggleSimulation(run) {
         this.running = run;
-        document.getElementById('startBtn').style.display = this.running ? 'none' : 'block';
-        document.getElementById('pauseBtn').style.display = this.running ? 'block' : 'none';
+        btStart.style.display = this.running ? 'none' : 'block';
+        btPause.style.display = this.running ? 'block' : 'none';
         if (this.running) {
             loop();
         } else {
@@ -74,9 +67,11 @@ class Simulation {
         loop();
     }
 
-    updateBackground() {
-        background(document.getElementById('bgColor').value);
-        let r = this.running;
+    preview(){
+        // show result of changing controls
+        // despite of simulation running status
+
+        const r = this.running;
         if(r) this.running = false;
         loop();
         this.running = r;

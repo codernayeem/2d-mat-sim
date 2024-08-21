@@ -29,12 +29,12 @@
             <!-- Row and Column Selection -->
             <div class="flex space-x-4 mb-6">
                 <div class="flex-1">
-                    <label for="rows" class="block text-sm font-medium text-gray-700">Rows:</label>
-                    <input type="number" id="rows" value="5" min="1" max="100" class="w-full p-2 border border-gray-300 rounded text-sm">
+                    <label for="ctrl_rows" class="block text-sm font-medium text-gray-700">Rows:</label>
+                    <input type="number" id="ctrl_rows" value="5" min="1" max="100" class="w-full p-2 border border-gray-300 rounded text-sm">
                 </div>
                 <div class="flex-1">
-                    <label for="cols" class="block text-sm font-medium text-gray-700">Columns:</label>
-                    <input type="number" id="cols" value="5" min="1" max="100" class="w-full p-2 border border-gray-300 rounded text-sm">
+                    <label for="ctrl_cols" class="block text-sm font-medium text-gray-700">Columns:</label>
+                    <input type="number" id="ctrl_cols" value="5" min="1" max="100" class="w-full p-2 border border-gray-300 rounded text-sm">
                 </div>
             </div>
 
@@ -42,22 +42,22 @@
             <div class="mb-6">
                 <label for="speed" class="block text-sm font-medium text-gray-700">Speed (FPS):</label>
                 <div class="flex items-center space-x-2">
-                    <input type="range" id="speed" min="1" max="50" value="5" class="w-full h-2 text-red-500 track-red rounded-lg appearance-none cursor-pointer">
-                    <span id="speedValue" class="text-sm text-gray-500">5</span>
+                    <input type="range" id="ctrl_speed" min="1" max="50" value="5" class="w-full h-2 text-red-500 track-red rounded-lg appearance-none cursor-pointer">
+                    <span id="ctrl_speedValue" class="text-sm text-gray-500">5</span>
                 </div>
             </div>
             <div class="mb-6">
                 <label for="borderWidth" class="block text-sm font-medium text-gray-700">Grid Border Width:</label>
                 <div class="flex items-center space-x-2">
-                    <input type="range" id="borderWidth" min="1" max="10" value="1" class="w-full h-2 text-blue-500 track-blue rounded-lg appearance-none cursor-pointer">
-                    <span id="borderWidthValue" class="text-sm text-gray-500">1</span>
+                    <input type="range" id="ctrl_borderWidth" min="1" max="10" value="1" class="w-full h-2 text-blue-500 track-blue rounded-lg appearance-none cursor-pointer">
+                    <span id="ctrl_borderWidthValue" class="text-sm text-gray-500">1</span>
                 </div>
             </div>
             <div class="mb-6">
                 <label for="borderOpacity" class="block text-sm font-medium text-gray-700">Grid Border Opacity:</label>
                 <div class="flex items-center space-x-2">
-                    <input type="range" id="borderOpacity" min="0" max="1" step="0.1" value="0.1" class="w-full h-2 text-green-500 track-green rounded-lg appearance-none cursor-pointer">
-                    <span id="borderOpacityValue" class="text-sm text-gray-500">0.2</span>
+                    <input type="range" id="ctrl_borderOpacity" min="0" max="1" step="0.1" value="0.1" class="w-full h-2 text-green-500 track-green rounded-lg appearance-none cursor-pointer">
+                    <span id="ctrl_borderOpacityValue" class="text-sm text-gray-500">0.2</span>
                 </div>
             </div>
 
@@ -66,22 +66,22 @@
                 <label class="block text-sm font-medium text-gray-700 mb-2">Color Selection</label>
                 <div class="flex space-x-4">
                     <div class="flex-1">
-                        <label for="bgColor" class="block text-xs font-medium text-gray-600">Background:</label>
-                        <input type="color" id="bgColor" value="#f9f9f9" class="w-full h-10 p-1 border border-gray-300 rounded">
+                        <label for="ctrl_bgColor" class="block text-xs font-medium text-gray-600">Background:</label>
+                        <input type="color" id="ctrl_bgColor" value="#f9f9f9" class="w-full h-10 p-1 border border-gray-300 rounded">
                     </div>
                     <div class="flex-1">
-                        <label for="borderColor" class="block text-xs font-medium text-gray-600">Grid Border:</label>
-                        <input type="color" id="borderColor" value="gray" class="w-full h-10 p-1 border border-gray-300 rounded">
+                        <label for="ctrl_borderColor" class="block text-xs font-medium text-gray-600">Grid Border:</label>
+                        <input type="color" id="ctrl_borderColor" value="gray" class="w-full h-10 p-1 border border-gray-300 rounded">
                     </div>
                 </div>
             </div>
 
             <!-- Buttons -->
             <div class="space-y-2">
-                <button id="startBtn" class="w-full py-3 text-gray-700 bg-green-500 rounded-md transition transform hover:bg-green-600 hover:scale-105" ><b>Start</b></button>
-                <button id="pauseBtn" class="w-full py-3 text-gray-700 bg-green-500 rounded-md transition transform hover:bg-green-600 hover:scale-105 hidden"><b>Pause</b></button>
-                <button id="resetBtn" class="w-full py-3 text-gray-700 bg-red-400 rounded-md transition transform hover:bg-red-500 hover:scale-105"><b>Reset</b></button>
-                <button id="randomFillBtn" class="w-full py-3 text-gray-700 rounded-md bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl transition transform hover:scale-105 font-medium text-sm text-center"><b>Random Fill</b></button>
+                <button id="bt_start" class="w-full py-3 text-gray-700 bg-green-500 rounded-md transition transform hover:bg-green-600 hover:scale-105" ><b>Start</b></button>
+                <button id="bt_pause" class="w-full py-3 text-gray-700 bg-green-500 rounded-md transition transform hover:bg-green-600 hover:scale-105 hidden"><b>Pause</b></button>
+                <button id="bt_reset" class="w-full py-3 text-gray-700 bg-red-400 rounded-md transition transform hover:bg-red-500 hover:scale-105"><b>Reset</b></button>
+                <button id="bt_randomFill" class="w-full py-3 text-gray-700 rounded-md bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl transition transform hover:scale-105 font-medium text-sm text-center"><b>Random Fill</b></button>
             </div>
         </div>
 
@@ -97,51 +97,13 @@
             <p><strong>Version:</strong> v1.0</p>
             <p><strong>Owner:</strong> <a class="text-blue-500" href="https://github.com/codernayeem">@codernayeem</a></p>
             <div class="mt-4 flex justify-end">
-                <button id="closeDialog" class="bg-red-400 text-white px-4 py-2 transition-all ease-in duration-75 rounded hover:bg-red-500 focus:outline-none">
+                <button id="infoDialog_closeBt" class="bg-red-400 text-white px-4 py-2 transition-all ease-in duration-75 rounded hover:bg-red-500 focus:outline-none">
                     Close
                 </button>
             </div>
         </div>
     </div>
     
-    <script>
-        // Update slider values dynamically
-        document.getElementById('speed').addEventListener('input', function() {
-            document.getElementById('speedValue').innerText = this.value;
-        });
-
-        document.getElementById('borderWidth').addEventListener('input', function() {
-            document.getElementById('borderWidthValue').innerText = this.value;
-        });
-
-        document.getElementById('borderOpacity').addEventListener('input', function() {
-            document.getElementById('borderOpacityValue').innerText = this.value;
-        });
-
-
-        // functionality for the info dialog
-        const infoButton = document.getElementById('infoButton');
-        const infoDialog = document.getElementById('infoDialog');
-        const closeDialog = document.getElementById('closeDialog');
-
-        infoButton.addEventListener('click', () => {
-            infoDialog.classList.remove('hidden');
-            simulation.mouseClickable = false;
-        });
-
-        closeDialog.addEventListener('click', () => {
-            simulation.mouseClickable = true;
-            infoDialog.classList.add('hidden');
-        });
-
-        infoDialog.addEventListener('click', (e) => {
-            if (e.target === infoDialog) {
-                simulation.mouseClickable = true;
-                infoDialog.classList.add('hidden');
-            }
-        });
-    </script>
-
     <!-- p5.js (for rendering 2d matrix) -->
     <script src="js/downloaded/p5.js"></script>
 
