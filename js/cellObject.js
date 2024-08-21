@@ -8,6 +8,9 @@ class CellObjectType {
     draw(x, y, cellSize) {
         if(this.color)
             fill(this.color);
+
+        rect(x * cellSize, y * cellSize, cellSize, cellSize);
+        
         if(this.symbol){
             textSize(cellSize * 0.8);
             textAlign(CENTER, CENTER);
@@ -17,10 +20,11 @@ class CellObjectType {
 }
 
 // customize as your needs
+// putting nothing in color will result main background color
 const cellObjectTypes = [
-    new CellObjectType("empty", "", ""),
+    new CellObjectType("empty", "", "#ffffff"),
     new CellObjectType("stone", "❌", "#000000"),
-    new CellObjectType("worm", "🚆", ""),
+    new CellObjectType("worm", "🚆", "#ffffff"),
     new CellObjectType("city-1", "", "#00FF00"),
     new CellObjectType("city-2", "", "#0000FF"),
     new CellObjectType("city-3", "", "#00FFFF"),

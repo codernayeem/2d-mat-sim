@@ -39,12 +39,9 @@ class Simulation {
             for (let x = 0; x < this.cols; x++) {
                 let cell = this.grid[y][x];
                 let cellType = cellObjectTypes[cell];
-                fill(cellType.color);
-                rect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
-
-                if (cell != 0) { // not empty
-                    cellType.draw(x, y, this.cellSize);
-                }
+                if(cellType.color != "")
+                    fill(this.BgColor);
+                cellType.draw(x, y, this.cellSize);
             }
         }
     }
