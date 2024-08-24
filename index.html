@@ -70,14 +70,14 @@
                     Simulation Script
                 </div>
                 <div class="flex m-auto pt-2 pb-3 px-2 justify-center font-semibold">
-                    <p>Game of Life</p>
+                    <p id="sim_script_name"></p>
                 </div>
                 <div class="flex">
-                    <button class="w-full py-2 text-gray-700 bg-green-50 hover:bg-green-200 transition rounded-bl-md border border-gray-300">
+                    <button id="bt_script_load" class="w-full py-2 text-gray-700 bg-green-50 hover:bg-green-200 transition rounded-bl-md border border-gray-300">
                         <img src="icons/load.svg" alt="Icon" class="m-auto h-5 w-5">
                         <span class="text-xs font-semibold">Load</span>
                     </button>
-                    <button class="w-full py-2 text-gray-700 bg-green-50 hover:bg-green-200 transition border border-gray-300">
+                    <button id="bt_script_reload" class="w-full py-2 text-gray-700 bg-green-50 hover:bg-green-200 transition border border-gray-300">
                         <img src="icons/reload_2.svg" alt="Icon" class="m-auto h-5 w-5">
                         <span class="text-xs font-semibold">Reload</span>
                     </button>
@@ -164,6 +164,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Dialog -->
+    <div id="loadScriptDialog" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white w-full max-w-md mx-auto p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Select a Script to Load</h2>
+            <ul id="loadScriptList" class="space-y-2"></ul>
+            <button id="loadScriptDialog_btClose" class="mt-4 bg-gray-500 text-white px-4 py-2 rounded-md">Close</button>
+        </div>
+    </div>
     
     <!-- p5.js (for rendering 2d matrix) -->
     <script src="js/downloaded/p5.js"></script>
@@ -171,13 +180,6 @@
     
     <!-- my scripts -->
     <script src="js/cellObject.js"></script>
-
-    <script>
-        let SimulationData;
-    </script>
-
-    <script id="dynamicScript" src="custom_simulations/city_worm.js"></script>
-    
     <script src="js/simulation.js"></script>
     <script src="js/main.js"></script>
 </body>

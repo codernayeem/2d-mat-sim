@@ -14,11 +14,20 @@ const btStart = document.getElementById('bt_start');
 const btPause = document.getElementById('bt_pause');
 const btReset = document.getElementById('bt_reset');
 const btRandomFill = document.getElementById('bt_randomFill');
+const simScriptName = document.getElementById('sim_script_name');
 const infoButton = document.getElementById('infoButton');
 const infoDialog = document.getElementById('infoDialog');
 const infoDialogCloseBt = document.getElementById('infoDialog_closeBt');
-const dynamicScript = document.getElementById('dynamicScript');
 const canvasParent = 'canvas-container';
+
+const btScriptLoad = document.getElementById('bt_script_load');
+const btScriptReload = document.getElementById('bt_script_reload');
+
+const loadScriptDialog = document.getElementById('loadScriptDialog');
+const loadScriptDialog_btClose = document.getElementById('loadScriptDialog_btClose');
+const loadScriptList = document.getElementById('loadScriptList');
+
+
 
 // The main simulation class
 const simulation = new Simulation(
@@ -87,6 +96,44 @@ btPause.addEventListener('click', () => simulation.toggleSimulation(false));
 btReset.addEventListener('click', () => simulation.reset());
 btRandomFill.addEventListener('click', () => simulation.randomFill());
 
+btScriptLoad.addEventListener('click', () => {
+    fetch('custom_simulations.json')
+        .then(response => response.json())
+        .then(names => {
+            loadScriptList.innerHTML = ''; // Clear any existing list items
+
+            names.forEach((name) => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('flex', 'justify-between', 'items-center', 'bg-gray-200', 'p-3', 'rounded-md');
+
+                const nameText = document.createElement('span');
+                nameText.textContent = name;
+
+                const setButton = document.createElement('button');
+                setButton.textContent = 'Load';
+                setButton.classList.add('bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded-md');
+
+                setButton.addEventListener('click', () => {
+                    loadScript(name + '.js');
+                    loadScriptDialog.classList.add('hidden');
+                    simulation.mouseClickable = true;
+                });
+
+                listItem.appendChild(nameText);
+                listItem.appendChild(setButton);
+                loadScriptList.appendChild(listItem);
+            });
+
+            loadScriptDialog.classList.remove('hidden');
+            simulation.mouseClickable = false;
+        })
+        .catch(error => console.error('Error fetching the JSON file:', error));
+});
+
+loadScriptDialog_btClose.addEventListener('click', () => {
+    loadScriptDialog.classList.add('hidden');
+    simulation.mouseClickable = true;
+});
 
 // the Info dialog
 infoButton.addEventListener('click', () => {
@@ -119,6 +166,7 @@ function loadScript(filename){
     script.onload = () => {
         simulation.simData = new SimulationData();
         simulation.reset();
+        simScriptName.innerText = simulation.simData.title;
         console.log("Loaded : "+simulation.simData.title);
     };
 
@@ -126,6 +174,9 @@ function loadScript(filename){
 
 }
 
+
+// Start by showing load script dialog.
+btScriptLoad.click();
 
 
 // Basic Functions for p5.js
@@ -138,6 +189,11 @@ function setup() {
 }
 
 function draw() {
+    if(simulation.simData == null){
+        noLoop();
+        return;
+    }
+
     simulation.drawGrid();
     if (simulation.running) {
         simulation.updateGrid();

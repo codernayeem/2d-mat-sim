@@ -1,3 +1,5 @@
+let SimulationData = null;
+
 class Simulation {
     constructor(r, c, speed, gbw, gbo, bgc, bc) {
         this.rows = r;
@@ -13,7 +15,7 @@ class Simulation {
         this.BgColor = bgc;
         this.BorderColor = bc;
 
-        this.simData = new SimulationData();
+        this.simData = null;
     }
 
     setup() {
@@ -56,6 +58,8 @@ class Simulation {
     }
 
     randomFill() {
+        if(this.simData == null) return;
+
         let rand_weights = this.simData.randomFillWeights;
 
         const cumulativeWeights = [];
@@ -97,6 +101,8 @@ class Simulation {
     }
 
     mousePress(){
+        if(this.simData == null) return;
+        
         // TODO: Need to fix click pos
         if (!this.running && this.mouseClickable) {
             // console.log(mouseX, mouseY, width, height);
