@@ -40,6 +40,8 @@ const simulation = new Simulation(
     ctrlBorderColor.value,
 );
 
+let LOADED_SCRIPT = null;
+
 // handle controls
 ctrlRows.addEventListener('input', function() {
     let r = ctrlRows.value;
@@ -135,6 +137,11 @@ loadScriptDialog_btClose.addEventListener('click', () => {
     simulation.mouseClickable = true;
 });
 
+btScriptReload.addEventListener('click', () => {
+    if(LOADED_SCRIPT)
+        loadScript(LOADED_SCRIPT);
+});
+
 // the Info dialog
 infoButton.addEventListener('click', () => {
     infoDialog.classList.remove('hidden');
@@ -171,7 +178,7 @@ function loadScript(filename){
     };
 
     document.body.appendChild(script);
-
+    LOADED_SCRIPT = filename;
 }
 
 
