@@ -17,6 +17,7 @@ const btRandomFill = document.getElementById('bt_randomFill');
 const infoButton = document.getElementById('infoButton');
 const infoDialog = document.getElementById('infoDialog');
 const infoDialogCloseBt = document.getElementById('infoDialog_closeBt');
+const dynamicScript = document.getElementById('dynamicScript');
 const canvasParent = 'canvas-container';
 
 // The main simulation class
@@ -104,6 +105,26 @@ infoDialog.addEventListener('click', (e) => {
         infoDialog.classList.add('hidden');
     }
 });
+
+function loadScript(filename){
+    simulation.toggleSimulation(false);
+    const oldScript = document.getElementById('dynamicScript');
+    if (oldScript) {
+        oldScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.src = `custom_simulations/${filename}`;
+    script.id = 'dynamicScript';
+    script.onload = () => {
+        simulation.simData = new SimulationData();
+        simulation.reset();
+        console.log("Loaded : "+simulation.simData.title);
+    };
+
+    document.body.appendChild(script);
+
+}
 
 
 
